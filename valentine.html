@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: linear-gradient(145deg, #ffdde1 0%, #ee9ca7 100%);
+            transition: background 0.5s ease;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.5s ease;
+            border: 3px solid white;
+        }
+
+        h1 {
+            color: #b13e5c;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #ffe7eb;
+        }
+
+        /* ---------- Question Page Styling ---------- */
+        .question-page {
+            transition: opacity 0.5s ease;
+        }
+
+        .gif-placeholder {
+            font-size: 5rem;
+            margin: 20px 0;
+            filter: drop-shadow(0 10px 5px rgba(0,0,0,0.1));
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-yes, .btn-no {
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+        }
+
+        .btn-yes {
+            background-color: #ff4d6d;
+            color: white;
+            transform: scale(1);
+        }
+
+        .btn-yes:hover {
+            background-color: #ff3355;
+            transform: scale(1.1);
+            box-shadow: 0 15px 20px rgba(255, 77, 109, 0.5);
+        }
+
+        .btn-no {
+            background-color: #a0a0a0;
+            color: white;
+            font-size: 1.8rem;
+            padding: 15px 35px;
+        }
+
+        .btn-no:hover {
+            background-color: #8a8a8a;
+        }
+
+        /* ---------- Love Letter Page Styling ---------- */
+        .love-letter-page {
+            transition: opacity 0.5s ease;
+        }
+
+        .counter-section {
+            background: linear-gradient(135deg, #ffb6c1, #ff99aa);
+            color: #4a0010;
+            padding: 25px 15px;
+            border-radius: 50px;
+            margin: 20px 0;
+            font-size: 2.2rem;
+            font-weight: bold;
+            box-shadow: inset 0 -3px 0 #b13e5c;
+            border: 2px solid white;
+        }
+
+        .counter-section span {
+            font-size: 3rem;
+            display: block;
+            color: #ffffff;
+            text-shadow: 3px 3px 0 #b13e5c;
+        }
+
+        .letter-text {
+            background-color: #fff9f0;
+            border: 3px dashed #ff8da1;
+            border-radius: 40px 40px 40px 0;
+            padding: 30px;
+            text-align: left;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #4d1f2a;
+            margin: 30px 0;
+            box-shadow: 0 10px 0 #ffe2d4;
+        }
+
+        .letter-text p {
+            margin: 20px 0;
+        }
+
+        .letter-text .signature {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #c94f6b;
+            margin-top: 40px;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #f6d1d9, #fae4e9);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 0 #d9a7b2;
+            border: 3px solid white;
+            transition: transform 0.2s;
+            color: #a34e62;
+            font-weight: bold;
+        }
+
+        .photo-placeholder:hover {
+            transform: rotate(2deg) scale(1.05);
+        }
+
+        .photo-placeholder span {
+            font-size: 0.8rem;
+            background-color: rgba(255,255,255,0.7);
+            padding: 5px 10px;
+            border-radius: 30px;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: #a15c6c;
+        }
+
+        @media (max-width: 600px) {
+            .btn-yes, .btn-no { font-size: 1.5rem; padding: 10px 20px; }
+            .counter-section { font-size: 1.5rem; }
+            .photo-placeholder { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <!-- Page 1: The Question (visible initially) -->
+        <div id="questionPage" class="question-page">
+            <h1>💝 My Love, 💝</h1>
+            <div class="gif-placeholder">
+                🥺👉👈
+                <!-- Cute blushing emoji couple / you can later replace with a real GIF -->
+            </div>
+            <h2 style="color:#7a3b46;">Will you be my Valentine?</h2>
+
+            <div class="button-container">
+                <button class="btn-yes" id="yesButtonMain">YES! 💖</button>
+                <button class="btn-no" id="noButton">No</button>
+            </div>
+            <p style="color:#a5636f;">(The "Yes" button grows each time you try to say no... 😉)</p>
+        </div>
+
+        <!-- Page 2: The Love Letter & Everything else (hidden initially) -->
+        <div id="loveLetterPage" class="love-letter-page hidden">
+            <h1 style="color:#b13e5c;">Yay! You said YES! 💕</h1>
+
+            <!-- Relationship Counter -->
+            <div class="counter-section" id="counterDisplay">
+                We've been together for... 
+                <span id="dayCounter">0 days</span>
+            </div>
+
+            <!-- The Love Letter -->
+            <div class="letter-text">
+                <p>My Dearest Farah</p>
+                <p>From the moment we started dating on <strong>October 17, 2025</strong>, my world has been brighter. Every day with you is a new adventure, filled with laughter, love, and a happiness I never knew possible. You're my best friend, my confidante, and the love of my life.</p>
+                <p>Thank you for being you. Thank for all the smiles, the inside jokes, and for making even ordinary moments feel special. I can't wait to see what our future holds.</p>
+                <p>Happy Valentine's Day, my love.</p>
+                <div class="signature">
+                    Forever yours, <br>
+                    Rayentk 💌
+                </div>
+            </div>
+
+            <!-- Photos Gallery -->
+            <h2 style="color:#a1445b;">Our Memories 📸</h2>
+            <div class="photo-gallery">
+                <!-- These are placeholders. Replace with your real photos later. -->
+                <img src="farah1.webp" alt="First date" style="width:150px; height:150px; border-radius:30px; object-fit:cover; border:3px solid white;">
+                <img src="farah2.webp" alt="second date" style="width:150px; height:150px; border-radius:30px; object-fit:cover; border:3px solid white;">
+                <img src="farah3.webp" alt="third date" style="width:150px; height:150px; border-radius:30px; object-fit:cover; border:3px solid white;">
+            <footer>✨ I love you more every day. ✨</footer>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // --- Get DOM elements ---
+            const questionPage = document.getElementById('questionPage');
+            const loveLetterPage = document.getElementById('loveLetterPage');
+            const yesButtonMain = document.getElementById('yesButtonMain');
+            const noButton = document.getElementById('noButton');
+            const dayCounterSpan = document.getElementById('dayCounter');
+
+            // --- Relationship start date: October 17, 2025 ---
+            const startDate = new Date(2025, 9, 17); // month is 0-indexed: 9 = October
+
+            // --- Function to update the day counter ---
+            function updateDayCounter() {
+                const today = new Date();
+                // Calculate difference in milliseconds
+                const diffTime = today - startDate;
+                // Convert to days (1 day = 24 * 60 * 60 * 1000 ms)
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                if (dayCounterSpan) {
+                    dayCounterSpan.textContent = diffDays + ' days 💞';
+                }
+            }
+
+            // --- Variable to track "No" button clicks ---
+            let noClickCount = 0;
+            // Base font size for yes button (rem)
+            let yesButtonFontSize = 2; // rem
+
+            // --- Function to grow the Yes button ---
+            function growYesButton() {
+                noClickCount++;
+                // Increase font size by 0.4rem each time, up to a max
+                yesButtonFontSize = 2 + noClickCount * 0.4;
+                if (yesButtonFontSize > 5) yesButtonFontSize = 5; // cap it
+                yesButtonMain.style.fontSize = yesButtonFontSize + 'rem';
+                yesButtonMain.style.padding = (15 + noClickCount * 4) + 'px ' + (40 + noClickCount * 8) + 'px';
+
+                // Optional: add a little animation / extra scaling
+                yesButtonMain.style.transform = `scale(${1 + noClickCount * 0.05})`;
+                if (yesButtonMain.style.transform > 1.5) yesButtonMain.style.transform = 1.5;
+
+                // Make the No button text sad / change it
+                if (noClickCount === 1) {
+                    noButton.textContent = "Are you sure?";
+                } else if (noClickCount === 2) {
+                    noButton.textContent = "Really? :(";
+                } else if (noClickCount === 3) {
+                    noButton.textContent = "You're breaking my heart 💔";
+                } else if (noClickCount >= 4) {
+                    noButton.textContent = "It's useless! YES is too big! 😂";
+                }
+            }
+
+            // --- Event listener for the No button ---
+            noButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                growYesButton();
+            });
+
+            // --- Event listener for the Yes button (both the main one) ---
+            function showLoveLetter() {
+                // Switch pages
+                questionPage.classList.add('hidden');
+                loveLetterPage.classList.remove('hidden');
+                // Update background to a more romantic, slightly deeper gradient
+                document.body.style.background = 'linear-gradient(145deg, #fbc2c2 0%, #f88ca0 100%)';
+                // Update the counter when the page becomes visible
+                updateDayCounter();
+                // Optional: update counter every second (though days don't change that often, it's nice)
+                // But we'll just update once. For precision, you could set an interval but not necessary.
+            }
+
+            yesButtonMain.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLoveLetter();
+            });
+
+            // Also if there are any other yes buttons (there aren't in this layout) but just in case.
+            // Ensure that the love letter page starts hidden (it does, thanks to 'hidden' class)
+
+            // --- Bonus: Update counter every day at midnight? Not necessary, but we can update on every visit. ---
+            // Also update the counter if the page becomes visible again (user might leave tab open)
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden && !questionPage.classList.contains('hidden')) {
+                    // If love page is visible, update counter
+                    if (!loveLetterPage.classList.contains('hidden')) {
+                        updateDayCounter();
+                    }
+                }
+            });
+
+            // Initial call to set counter correctly in case somehow it's shown first (it's not, but safe)
+            updateDayCounter();
+
+            // For a nice touch: if the user accidentally clicks no many times, they can still click yes
+            // Also add a little message on the no button hover? Already did.
+
+            // Also ensure that the Yes button can be clicked after growing.
+        })();
+    </script>
+
+    <!-- 
+        INSTRUCTIONS FOR YOU:
+        1. Replace [Girlfriend's Name] and [Your Name] in the love letter.
+        2. Replace the placeholder photo divs with actual <img> tags if you have images.
+           Example: <img src="your_photo.jpg" alt="Memory" style="width:150px; height:150px; border-radius:30px; object-fit:cover; border:3px solid white;">
+        3. The start date is set to October 17, 2025. Double-check the month (January is 0, so October is 9).
+        4. Save this file as an .html file (e.g., "Valentine.html") and open it in a browser.
+        5. Optional: Add a real cute GIF by replacing the emojis in .gif-placeholder with an <img> tag.
+    -->
+</body>
+</html>
